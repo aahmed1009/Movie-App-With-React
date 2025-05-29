@@ -94,19 +94,20 @@ TMDB Docs: [https://developers.themoviedb.org/3](https://developers.themoviedb.o
 
 ##  Screenshots
 
-### Search Results
 
+### Popular Movies Page
 ![Search Results](screenshots/Screenshot%20from%202025-05-29%2017-46-26.png)
-
-### Movie Details Page
+### Pagination
 
 ![Movie Details](screenshots/Screenshot%20from%202025-05-29%2017-46-31.png)
 
-### Pagination
+### Movie Details Page
+
 
 ![Pagination](screenshots/Screenshot%20from%202025-05-29%2017-46-44.png)
 
-### Popular Movies Page
+
+### Search Results
 
 ![Popular Movies](screenshots/Screenshot%20from%202025-05-29%2017-47-14.png)
 
