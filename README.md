@@ -1,71 +1,115 @@
-# Getting Started with Create React App
+# 🎮 MovieApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React application for exploring movies using The Movie Database (TMDB) API.
+Users can view now-playing and popular movies, explore details, search titles, and browse with pagination.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+##  Features
 
-### `npm start`
+*  movies on the Home page
+*  Popular movies section
+*  Search movies by title
+*  Movie Details with genres, ratings, and overview
+*  Pagination support
+*  Clean UI with Bootstrap 5
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##  Tech Stack
 
-### `npm test`
+*  React (Vite)
+*  Bootstrap 5
+*  React Router DOM
+*  Axios (with interceptor)
+*  TMDB API
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🔧 Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repo**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/your-username/movie-app.git
+   cd movie-app
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies**
 
-### `npm run eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Start the development server**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm run dev
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+##  Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+├── components/       # Reusable UI components
+│   ├── Navbar.jsx
+│   ├── MovieCard.jsx
+│   ├── Pagination.jsx
+│   └── SearchBar.jsx
+├── pages/            # Route-based pages
+│   ├── Home.jsx
+│   ├── Popular.jsx
+│   ├── MovieDetails.jsx
+│   └── SearchResults.jsx
+├── services/         # API logic and Axios config
+│   ├── api.js
+│   └── movieService.js
+├── routes/           # App routing
+│   └── AppRoutes.jsx
+├── styles/           # Custom CSS files
+│   ├── Navbar.css
+│   └── Pagination.css
+├── App.jsx
+└── main.jsx
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+##  APIs Used
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* **Popular Movies**: `/movie/popular`
+* **Movie Details**: `/movie/{id}`
+* **Search Movies**: `/search/movie`
+* **Images**: `https://image.tmdb.org/t/p/w500/{poster_path}`
 
-### Making a Progressive Web App
+TMDB Docs: [https://developers.themoviedb.org/3](https://developers.themoviedb.org/3)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+##  Screenshots
 
-### Deployment
+### Search Results
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Search Results](./assets/Screenshot%20from%202025-05-29%2017-46-26.png)
 
-### `npm run build` fails to minify
+### Movie Details Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Movie-App-With-React
+![Movie Details](./assets/Screenshot%20from%202025-05-29%2017-46-31.png)
+
+### Pagination
+
+![Pagination](./assets/Screenshot%20from%202025-05-29%2017-46-44.png)
+
+### Popular Movies Page
+
+![Popular Movies](./assets/Screenshot%20from%202025-05-29%2017-47-14.png)
+
+---
+
+
