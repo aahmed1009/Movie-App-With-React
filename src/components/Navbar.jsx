@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import "../styles/Navbar.css";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const favoriteCount = useSelector((state) => state.favorites.length);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light shadow-sm custom-navbar">
       <div className="container">
@@ -36,6 +39,11 @@ const Navbar = () => {
             <li className="nav-item">
               <NavLink to="/search" className="nav-link nav-item-custom">
                 Search
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/favorites" className="nav-link">
+                ❤️ Favorites ({favoriteCount})
               </NavLink>
             </li>
           </ul>

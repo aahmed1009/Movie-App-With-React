@@ -3,10 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import MovieDetails from "../pages/MovieDetails";
 import SearchResults from "../pages/SearchResults";
+import Favorites from "../pages/Favorites";
 
 const AppRoutes = () => {
   return (
     <Routes>
+      <Route path="/favorites" element={<Favorites />} />
       <Route path="/" element={<Home />} />
       <Route path="/popular" element={<Home />} />
       <Route path="/movie/:id" element={<MovieDetails />} />
