@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails } from "../services/movieService";
+import { useLanguage } from "../context/languageContext";
 
 const MovieDetails = () => {
-  const { id } = useParams(); // movie ID from URL
+  const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { language } = useLanguage(); // Get selected language (e.g. "en", "ar", "fr")
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
         setLoading(true);
-        const data = await getMovieDetails(id);
+        const data = await getMovieDetails(id, language); // Pass selected language
         setMovie(data);
         setLoading(false);
       } catch (error) {
@@ -21,7 +23,7 @@ const MovieDetails = () => {
     };
 
     fetchMovie();
-  }, [id]);
+  }, [id, language]); // Refetch when language or ID changes
 
   if (loading) return <div className="text-center mt-5">Loading...</div>;
   if (!movie) return <div className="text-center mt-5">Movie not found.</div>;
@@ -51,7 +53,7 @@ const MovieDetails = () => {
         </div>
         <div className="col-md-8">
           <h2>{title}</h2>
-          <p className="text-muted">{tagline}</p>
+          {tagline && <p className="text-muted">{tagline}</p>}
           <p>
             <strong>Release Date:</strong> {release_date}
           </p>
@@ -62,7 +64,7 @@ const MovieDetails = () => {
             <strong>Runtime:</strong> {runtime} min
           </p>
           <p>
-            <strong>Genres:</strong> {genres.map((g) => g.name).join(", ")}
+            <strong>Genres:</strong> {genres?.map((g) => g.name).join(", ")}
           </p>
           <hr />
           <p>{overview}</p>

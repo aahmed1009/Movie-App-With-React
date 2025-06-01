@@ -4,6 +4,7 @@ import { searchMovies } from "../services/movieService";
 import MovieCard from "../components/MovieCard";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+import { useLanguage } from "../context/languageContext";
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -12,13 +13,14 @@ const SearchResults = () => {
   const [results, setResults] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  const { language } = useLanguage(); // Get selected language
 
   useEffect(() => {
     const fetchResults = async () => {
       if (!query) return;
       try {
         setLoading(true);
-        const data = await searchMovies(query, page);
+        const data = await searchMovies(query, page, language); // Pass language
         setResults(data.results);
         setTotalPages(data.total_pages);
         setLoading(false);
@@ -29,7 +31,7 @@ const SearchResults = () => {
     };
 
     fetchResults();
-  }, [query, page]);
+  }, [query, page, language]); // 🔁 refetch if lang/query/page change
 
   if (!query)
     return (

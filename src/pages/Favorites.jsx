@@ -2,10 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite } from "../redux/favoritesSlice";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/languageContext";
+import { translations } from "../context/uiStrings";
 
 const Favorites = () => {
   const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const handleRemove = (id) => {
     dispatch(removeFavorite(id));
@@ -13,13 +17,13 @@ const Favorites = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4 text-center">❤️ Your Favorite Movies</h2>
+      <h2 className="mb-4 text-center">❤️ {t.favorites}</h2>
 
       {favorites.length === 0 ? (
         <div className="text-center">
-          <p>No favorite movies yet.</p>
+          <p>{t.noFavorites}</p>
           <Link to="/popular" className="btn btn-primary mt-3">
-            Browse Popular Movies
+            {t.browse}
           </Link>
         </div>
       ) : (
@@ -43,7 +47,7 @@ const Favorites = () => {
                     className="btn btn-outline-danger btn-sm mt-2"
                     onClick={() => handleRemove(movie.id)}
                   >
-                    🗑️ Remove from Favorites
+                    🗑️ {t.remove}
                   </button>
                 </div>
               </div>

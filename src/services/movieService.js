@@ -1,27 +1,34 @@
-import api from "./api";
+import { fetchMovies, fetchMovieDetails } from "./api";
 
-//  popular movies
-export const getPopularMovies = (page = 1) => {
-  return api
-    .get("/movie/popular", {
-      params: { page },
-    })
-    .then((res) => res.data);
+// Get popular movies (page & language supported)
+export const getPopularMovies = async (page = 1, language = "en") => {
+  try {
+    const response = await fetchMovies({ page, language });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching popular movies:", error);
+    throw error;
+  }
 };
 
-//  information about a specific movie by ID
-export const getMovieDetails = (id) => {
-  return api.get(`/movie/${id}`).then((res) => res.data);
+// Get details of a specific movie by ID
+export const getMovieDetails = async (id, language = "en") => {
+  try {
+    const response = await fetchMovieDetails(id, language);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    throw error;
+  }
 };
 
-// Search movies by name and optionally by page
-export const searchMovies = (query, page = 1) => {
-  return api
-    .get("/search/movie", {
-      params: {
-        query,
-        page,
-      },
-    })
-    .then((res) => res.data);
+// Search movies by query & page
+export const searchMovies = async (query, page = 1, language = "en") => {
+  try {
+    const response = await fetchMovies({ page, searchTerm: query, language });
+    return response.data;
+  } catch (error) {
+    console.error("Error searching movies:", error);
+    throw error;
+  }
 };

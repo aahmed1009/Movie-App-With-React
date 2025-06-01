@@ -2,17 +2,19 @@ import React, { useEffect, useState, useCallback } from "react";
 import { getPopularMovies } from "../services/movieService";
 import MovieCard from "../components/MovieCard";
 import Pagination from "../components/Pagination";
+import { useLanguage } from "../context/languageContext";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  const { language } = useLanguage();
 
   const fetchMovies = useCallback(async () => {
     try {
       setLoading(true);
-      const data = await getPopularMovies(page);
+      const data = await getPopularMovies(page, language);
       setMovies(data.results);
       setTotalPages(data.total_pages);
       setLoading(false);
@@ -20,7 +22,7 @@ const Home = () => {
       console.error("Error fetching movies:", error);
       setLoading(false);
     }
-  }, [page]);
+  }, [page, language]);
 
   useEffect(() => {
     fetchMovies();

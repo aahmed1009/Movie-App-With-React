@@ -1,19 +1,23 @@
 import axios from "axios";
 
-const API_KEY = "d91147c8bb09e15408a2cb5658d47fb4";
+const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
+const baseUrl = "https://api.themoviedb.org/3";
 
-// base URL
-const api = axios.create({
-  baseURL: "https://api.themoviedb.org/3/",
-});
+export const fetchMovies = async ({
+  page = 1,
+  searchTerm = "",
+  language = "en",
+}) => {
+  const url = searchTerm
+    ? `${baseUrl}/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
+        searchTerm
+      )}&page=${page}&language=${language}`
+    : `${baseUrl}/movie/popular?api_key=${apiKey}&page=${page}&language=${language}`;
 
-// to append API key to every request
-api.interceptors.request.use((config) => {
-  config.params = {
-    ...config.params,
-    api_key: API_KEY,
-  };
-  return config;
-});
+  return axios.get(url);
+};
 
-export default api;
+export const fetchMovieDetails = async (id, language = "en") => {
+  const url = `${baseUrl}/movie/${id}?api_key=${apiKey}&language=${language}`;
+  return axios.get(url);
+};

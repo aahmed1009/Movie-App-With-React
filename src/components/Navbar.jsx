@@ -1,16 +1,23 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import "../styles/Navbar.css";
 import { useSelector } from "react-redux";
+import { useLanguage } from "../context/languageContext";
+import { translations } from "../context/uiStrings";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   const favoriteCount = useSelector((state) => state.favorites.length);
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light shadow-sm custom-navbar">
+    <nav className="navbar navbar-expand-lg bg-white border-bottom shadow-sm py-2 sticky-top custom-navbar">
       <div className="container">
-        <Link className="navbar-brand fw-bold text-primary" to="/">
-          🎬 MovieApp
+        <Link
+          className="navbar-brand fw-bold text-primary d-flex align-items-center gap-2"
+          to="/"
+        >
+          🎬 <span>MovieApp</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -21,30 +28,45 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon" />
         </button>
 
         <div className="collapse navbar-collapse" id="navbarContent">
-          <ul className="navbar-nav ms-auto gap-2">
+          <ul className="navbar-nav ms-auto d-flex align-items-center gap-2">
             <li className="nav-item">
-              <NavLink to="/" end className="nav-link nav-item-custom">
-                Home
+              <NavLink to="/" end className="nav-link">
+                {t.home}
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/popular" className="nav-link nav-item-custom">
-                Popular
+              <NavLink to="/popular" className="nav-link">
+                {t.popular}
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/search" className="nav-link nav-item-custom">
-                Search
+              <NavLink to="/search" className="nav-link">
+                {t.search}
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/favorites" className="nav-link">
-                ❤️ Favorites ({favoriteCount})
+              <NavLink to="/favorites" className="nav-link position-relative">
+                ❤️ {t.favorites}
+                {favoriteCount > 0 && (
+                  <span className="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill">
+                    {favoriteCount}
+                  </span>
+                )}
               </NavLink>
+            </li>
+            <li className="nav-item">
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="form-select form-select-sm ms-3"
+              >
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+              </select>
             </li>
           </ul>
         </div>
